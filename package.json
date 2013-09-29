@@ -1,0 +1,17 @@
+{
+  "name": "rabarber",
+  "version": "0.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Peter Magnusson <peter@birchroad.net>",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "easyip": "~2.0.9",
+    "nconf": "~0.6.7",
+    "owjs": "*",
+    "xtend": "~2.1.1"
+  }
+}
