@@ -1,19 +1,13 @@
 
-var hq = require('hyperquest');
-var qs = require('querystring');
-var concat = require('concat-stream');
+var nibble = require('./nibble');
 
 
-
-var getValues = function (callback) {
-  var req = hq('/values');
-  req.pipe(concat(function(data){
-    console.log('data=' + data);
-    callback(data);
-  }));
-  
+function getValues(callback){
+  nibble.Get('/values')
+  .then(function(data){
+    return callback(data);
+  });
 }
-
 
 function showValues(data) {
   var el = document.querySelector('.content')
