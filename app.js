@@ -1,20 +1,38 @@
-var http = require('http')
+var express = require('express')
+  , app = express()
+  , path = require('path');
 
-var lib = require('./lib'),
-  Router = require('./lib/router');
+var pkg = require('./package.json')
+  , lib = require('./lib');
 
-var routes = {
-  '/values': function(req, res){
-    res.writeHeader(200, {'Content-Type': 'application/json'});
-    res.end(JSON.stringify(lib.owfs.cache));
-  }
+
+
+app.set('port', lib.config.get('PORT'));
+app.set('views', path.join(__dirname, 'frontend', 'views'));
+app.set('view engine', 'jade');
+app.use(express.logger('dev'));
+app.use(express.bodyParser());
+app.use(express.methodOverride());
+app.use(app.router);
+
+// development only
+if ('development' === app.get('env')) {
+  app.use(express.errorHandler());
+  var browserify = require('browserify-middleware');
+  browserify.settings({
+    transform: ['simple-jadeify']
+  });
+  app.use('/rabarber.js', browserify('./src/main.js'));
 }
 
-var router = new Router(routes);
-
-
-var server = http.createServer(function (req, res) {
-  router(req, res);
+app.get('/pkg',  function (req, res) {
+  res.json(pkg);
 });
 
-module.exports = server;
+app.get('/values',  function (req, res) {
+  res.json(lib.mapping.map);
+});
+
+app.use(express.static(path.join(__dirname, 'frontend', 'static')));
+
+module.exports = app;

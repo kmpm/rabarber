@@ -5,9 +5,11 @@ var lib = require('./lib'),
 
 var pid = new Pid(lib.config.get('pid'));
 
-app.listen(lib.config.get('PORT'), function(){
+app.listen(lib.config.get('PORT'), function () {
   console.log('http \tlistening on port', lib.config.get('PORT'));
-  pid.downgrade(function(p, g){
+  pid.downgrade(function (p, g) {
     console.log("Now running as %s:%s", p, g);
   });
 });
+
+module.exports = app;

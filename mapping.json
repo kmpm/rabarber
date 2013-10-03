@@ -1,0 +1,38 @@
+{
+    "key10dot67C6697351FFtemperature": {
+        "device": "/10.67C6697351FF/temperature",
+        "index": 156,
+        "alias": "/10.67C6697351FF/temperature",
+        "value": 99.8
+    },
+    "key10dot4AEC29CDBAABtemperature": {
+        "device": "/10.4AEC29CDBAAB/temperature",
+        "index": 157,
+        "alias": "/10.4AEC29CDBAAB/temperature",
+        "value": 35.6
+    },
+    "key10dotF2FBE3467CC2temperature": {
+        "device": "/10.F2FBE3467CC2/temperature",
+        "index": 158,
+        "alias": "/10.F2FBE3467CC2/temperature",
+        "value": 75.3
+    },
+    "key10dot765A2E63339Ftemperature": {
+        "device": "/10.765A2E63339F/temperature",
+        "index": 159,
+        "alias": "/10.765A2E63339F/temperature",
+        "value": 3.6
+    },
+    "key10dotC99A66320DB7temperature": {
+        "device": "/10.C99A66320DB7/temperature",
+        "index": 160,
+        "alias": "/10.C99A66320DB7/temperature",
+        "value": 52.4
+    },
+    "key10dot3158A35A255Dtemperature": {
+        "device": "/10.3158A35A255D/temperature",
+        "index": 161,
+        "alias": "/10.3158A35A255D/temperature",
+        "value": 20.1
+    }
+}

@@ -1,13 +1,13 @@
-
+/*global describe:true, it:true */
 
 
 var app = require('../app');
 
 var request = require('supertest')(app);
 
-describe('app should', function(){
+describe('app should', function () {
 
-  it('support index', function(done){
+  it('support index', function (done) {
     request.get('/')
       .expect(200)
       .expect('Content-Type', /html/)
@@ -15,7 +15,7 @@ describe('app should', function(){
 
   });
 
-  it('return values', function(done){
+  it('return values', function (done) {
     request.get('/values')
       .expect('Content-Type', /json/)
 
