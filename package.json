@@ -14,7 +14,8 @@
     "owjs": "~0.1.1",
     "xtend": "~2.1.1",
     "q": "~0.9.7",
-    "slug": "~0.3.3"
+    "slug": "~0.3.3",
+    "express": "~3.4.0"
   },
   "devDependencies": {
     "supertest": "~0.8.0",
