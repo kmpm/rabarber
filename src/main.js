@@ -29,7 +29,7 @@ function showValues(data) {
         el.innerHTML = row.value;
       }
       else {
-        var html = generateValueRow(key, row)
+        var html = generateValueRow(key, row);
         appendHtml(tb, html);
       }
     });
@@ -71,4 +71,4 @@ window.rabarber = {
       console.log("resume", timer);
     }
   }
-}
+};
