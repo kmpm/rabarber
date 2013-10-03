@@ -1,3 +1,4 @@
 node_modules/
 .nodemonignore
 config.json
+mapping.json
