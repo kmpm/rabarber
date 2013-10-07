@@ -33,6 +33,8 @@ app.get('/values',  function (req, res) {
   res.json(lib.mapping.map);
 });
 
+app.use(express.static(path.join(__dirname, 'frontend', 'public')));
 app.use(express.static(path.join(__dirname, 'frontend', 'static')));
+
 
 module.exports = app;

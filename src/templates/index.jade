@@ -1,6 +1,14 @@
 extends layout
 
 block content
-  p Hello World
-  table
-    tbody#valuetable
+  row
+    .col-md-12
+      p Hello World
+      table.table-striped.table-bordered
+        thead
+          tr
+            th Device
+            th Alias
+            th Offset
+            th Value
+        tbody#valuetable
