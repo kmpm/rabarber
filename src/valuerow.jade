@@ -1,7 +1,6 @@
 each entity, key in data
   tr(id="row_#{key}")
     td.col_device= entity.device
-    td.col_alias
-      input(id="aliasof_#{key}", type="text", value=entity.alias)
+    td.col_alias= entity.alias
     td.col_index= entity.index
     td.col_value= entity.value

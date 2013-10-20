@@ -1,9 +1,18 @@
 extends layout
 
 block content
-  row
+  .row
     .col-md-12
-      p Hello World
+      form(action="/values", method="POST", enctype="multipart/form-data", role="form")
+
+        .form-group
+          label(for="mapping") Mapping File
+          input(type="file", name="mapping", id="mapping")
+          .help-block Upload updated mapping file here
+       
+        button.btn.btn-default(type="submit") Upload
+  .row
+    .col-md-12
       table.table-striped.table-bordered
         thead
           tr
@@ -12,3 +21,4 @@ block content
             th Offset
             th Value
         tbody#valuetable
+      a(href="/values", target="_blank") Download

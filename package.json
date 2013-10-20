@@ -9,13 +9,13 @@
   "author": "Peter Magnusson <peter@birchroad.net>",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "easyip": "~2.0.9",
-    "nconf": "~0.6.7",
-    "owjs": "~0.1.1",
-    "xtend": "~2.1.1",
-    "q": "~0.9.7",
-    "slug": "~0.3.3",
-    "express": "~3.4.0"
+    "easyip": "2.0.x",
+    "nconf": "0.6.x",
+    "owjs": "*",
+    "xtend": "2.1.x",
+    "q": "0.9.x",
+    "slug": "0.3.x",
+    "express": "3.4.x"
   },
   "devDependencies": {
     "supertest": "~0.8.0",

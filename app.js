@@ -1,6 +1,7 @@
 var express = require('express')
   , app = express()
-  , path = require('path');
+  , path = require('path')
+  , fs = require('fs');
 
 var pkg = require('./package.json')
   , lib = require('./lib');
@@ -31,6 +32,26 @@ app.get('/pkg',  function (req, res) {
 
 app.get('/values',  function (req, res) {
   res.json(lib.mapping.map);
+});
+
+app.post('/values', function (req, res) {
+  //console.log(req.files);
+  fs.readFile(req.files.mapping.path, function (err, data) {
+    var map = JSON.parse(data);
+    lib.mapping.map = map;
+    lib.mapping.save();
+    res.redirect('/');
+    // var newPath = __dirname + "/uploads/uploadedFileName";
+    // fs.writeFile(newPath, data, function (err) {
+    //   res.redirect("back");
+    // });
+  });
+  
+});
+
+app.get('/save', function(req, res){
+  lib.mapping.save();
+  res.redirect('/');
 });
 
 app.use(express.static(path.join(__dirname, 'frontend', 'public')));
