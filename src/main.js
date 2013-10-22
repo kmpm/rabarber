@@ -22,14 +22,13 @@ function showValues(data) {
     tb.innerHTML = template({data: data});
   }
   else{
-    Object.keys(data).forEach(function(key){
-      var row = data[key];
-      var el = document.querySelector('#row_' + key + ' .col_value');
+    data.forEach(function(row){
+      var el = document.querySelector('#row_' + row.slug + ' .col_value');
       if (el) {
         el.innerHTML = row.value;
       }
       else {
-        var html = generateValueRow(key, row);
+        var html = generateValueRow(row.slug, row);
         appendHtml(tb, html);
       }
     });

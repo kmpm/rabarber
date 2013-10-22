@@ -31,15 +31,20 @@ app.get('/pkg',  function (req, res) {
 });
 
 app.get('/values',  function (req, res) {
-  res.json(lib.mapping.map);
+  if(req.accepts('html')){
+    console.log('sending string');
+    res.setHeader('Content-Type', 'text/plain');
+    res.send(JSON.stringify(lib.mapping.map, null, 2));
+  }
+  else {
+    res.json(lib.mapping.map);
+  }
 });
 
 app.post('/values', function (req, res) {
   //console.log(req.files);
   fs.readFile(req.files.mapping.path, function (err, data) {
-    var map = JSON.parse(data);
-    lib.mapping.map = map;
-    lib.mapping.save();
+    lib.upload(data);
     res.redirect('/');
     // var newPath = __dirname + "/uploads/uploadedFileName";
     // fs.writeFile(newPath, data, function (err) {
