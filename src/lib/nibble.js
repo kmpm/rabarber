@@ -11,6 +11,7 @@ exports.Get = function (url, options) {
   var deferred = Q.defer();
 	
   var req = hq(url);
+  req.setHeader('Accept', 'application/json;');
   
   req.pipe(concat(function (data) {
     //console.log('data=' + data);

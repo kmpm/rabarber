@@ -6,6 +6,8 @@ var express = require('express')
 var pkg = require('./package.json')
   , lib = require('./lib');
 
+var exec = require('child_process').exec;
+
 
 
 app.set('port', lib.config.get('PORT'));
@@ -56,6 +58,16 @@ app.post('/values', function (req, res) {
 
 app.get('/save', function(req, res){
   lib.mapping.save();
+  res.redirect('/');
+});
+
+app.get('/reboot', function(req, res) {
+  exec('sudo reboot');
+  res.redirect('/');
+});
+
+app.get('/poweroff', function(req, res) {
+  exec('sudo poweroff');
   res.redirect('/');
 });
 
