@@ -4,7 +4,8 @@ var express = require('express')
   , fs = require('fs');
 
 var pkg = require('./package.json')
-  , lib = require('./lib');
+  , lib = require('./lib')
+  , log = require('./lib/log').addContext('app');
 
 var exec = require('child_process').exec;
 
@@ -20,6 +21,7 @@ app.use(app.router);
 
 // development only
 if ('development' === app.get('env')) {
+  log.info('running in development mode');
   app.use(express.errorHandler());
   var browserify = require('browserify-middleware');
   browserify.settings({
@@ -34,7 +36,7 @@ app.get('/pkg',  function (req, res) {
 
 app.get('/values',  function (req, res) {
   if(req.accepts('html')){
-    console.log('sending string');
+    log.debug('sending string');
     res.setHeader('Content-Type', 'text/plain');
     res.send(JSON.stringify(lib.mapping.map, null, 2));
   }
@@ -57,16 +59,19 @@ app.post('/values', function (req, res) {
 });
 
 app.get('/save', function(req, res){
+  log.info('save');
   lib.mapping.save();
   res.redirect('/');
 });
 
 app.get('/reboot', function(req, res) {
+  log.info('reboot');
   exec('sudo reboot');
   res.redirect('/');
 });
 
 app.get('/poweroff', function(req, res) {
+  log.info('poweroff');
   exec('sudo poweroff');
   res.redirect('/');
 });
