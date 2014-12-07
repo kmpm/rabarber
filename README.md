@@ -54,6 +54,14 @@ Checkout rabarber code and install dependencies
     cd rabarber
     npm install --production
 
+Put
+    export NODE_ENV=production
+
+into /etc/default/rabarber
+
+    ln -s /home/pi/rabarber/misc/rabarber /etc/init.d/rabaraber
+    
+
 
 ### Misc
 Fix so that user for node process can reboot and poweroff
