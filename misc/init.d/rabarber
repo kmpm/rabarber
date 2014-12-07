@@ -12,7 +12,7 @@
 PATH=/sbin:/usr/sbin:/bin:/usr/bin:/usr/local/bin:/opt/node/bin
 DAEMON_ARGS="/home/pi/rabarber/server.js" 
 DESC="node.js service"
-NODEUSER=pi:pi
+NODEUSER=root:root
 LOCAL_VAR_RUN=/var/run
 NAME=node
 DAEMON=/opt/node/bin/$NAME
