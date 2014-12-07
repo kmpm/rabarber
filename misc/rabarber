@@ -1,7 +1,7 @@
 #! /bin/sh
 
 ### BEGIN INIT INFO
-# Provides:          node-service
+# Provides:          rabarber
 # Required-Start:    $remote_fs $named $syslog
 # Required-Stop:     $remote_fs $named $syslog
 # Default-Start:     2 3 4 5
