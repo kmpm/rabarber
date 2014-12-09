@@ -51,7 +51,7 @@ module.exports = function (grunt) {
         newcap: true,
         noarg: true,
         sub: true,
-        indent: 2,
+        //indent: 2,
         //white: true,
         undef: true,
         unused: true,
