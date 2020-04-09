@@ -18,7 +18,7 @@ module.exports = function (grunt) {
         //server: './server.js',
         compile: 'frontend/static/<%= pkg.name %>.js',
         beforeHook: function (bundle) {
-          bundle.transform(require('simple-jadeify'));
+          bundle.transform(require('pugify'));
         },
         debug: true
       }
@@ -89,7 +89,7 @@ module.exports = function (grunt) {
         tasks: ['jshint:lib_test', 'nodeunit']
       }
     },
-    jade: {
+    pug: {
       compile: {
         pretty: true,
         options: {
@@ -98,7 +98,7 @@ module.exports = function (grunt) {
           }
         },
         files: {
-          "frontend/static/index.html": ["src/templates/index.jade"]
+          "frontend/static/index.html": ["src/templates/index.pug"]
         }
       }
     }
@@ -111,10 +111,10 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.loadNpmTasks('grunt-contrib-jade');
+  grunt.loadNpmTasks('grunt-contrib-pug');
   grunt.loadNpmTasks('grunt-browserify2');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'jade', 'browserify2:dev', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'pug', 'browserify2:dev']);
 
 };

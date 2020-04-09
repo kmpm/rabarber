@@ -2,7 +2,7 @@
 var nibble = require('./lib/nibble');
 
 function getValues(callback) {
-  nibble.Get('/values')
+  nibble.Get(window.location + 'values')
   .then(function (data) {
     return callback(data);
   })
@@ -15,7 +15,7 @@ function errorHandler(err){
 
 function showValues(data) {
   data = JSON.parse(data);
-  var template = require('./valuetable-tbody.jade');
+  var template = require('./valuetable-tbody.pug');
   var tb = document.querySelector('#valuetable');
 
   if (tb.innerHTML === '') {
@@ -44,7 +44,7 @@ function appendHtml(target, text) {
 
 
 function generateValueRow(key, row) {
-  var template = require('./valuetable-row.jade');
+  var template = require('./valuetable-row.pug');
   return template({entity: row, key: key});
 }
 

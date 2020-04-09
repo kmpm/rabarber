@@ -3,6 +3,11 @@ var express = require('express')
   , path = require('path')
   , fs = require('fs');
 
+var morgan = require('morgan');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var errorhandler = require('errorhandler');
+
 var pkg = require('./package.json')
   , lib = require('./lib')
   , log = require('./lib/log').addContext('app');
@@ -14,18 +19,19 @@ var exec = require('child_process').exec;
 app.set('port', lib.config.get('PORT'));
 app.set('views', path.join(__dirname, 'frontend', 'views'));
 app.set('view engine', 'jade');
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(app.router);
+app.use(morgan('combined'));
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.use(methodOverride('X-HTTP-Method-Override'));
+// app.use(app.router);
 
 // development only
 if ('development' === app.get('env')) {
   log.info('running in development mode');
-  app.use(express.errorHandler());
+  app.use(errorhandler());
   var browserify = require('browserify-middleware');
   browserify.settings({
-    transform: ['simple-jadeify']
+    transform: ['pugify']
   });
   app.use('/rabarber.js', browserify('./src/main.js'));
 }
@@ -37,10 +43,12 @@ app.get('/pkg',  function (req, res) {
 app.get('/values',  function (req, res) {
   if(req.accepts('html')){
     log.debug('sending string');
-    res.setHeader('Content-Type', 'text/plain');
+    res.setHeader('Content-Disposition', 'inline; filename="values.json"');
+    res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(lib.mapping.map, null, 2));
   }
   else {
+    res.setHeader('Content-Type', 'application/json');
     res.json(lib.mapping.map);
   }
 });
