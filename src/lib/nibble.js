@@ -13,7 +13,7 @@ exports.Get = function (url, options) {
   var req = hq(url);
   req.setHeader('Accept', 'application/json;');
   
-  req.pipe(concat(function (data) {
+  req.pipe(concat({encoding:"string"}, function (data) {
     //console.log('data=' + data);
     deferred.resolve(data);
   }));
