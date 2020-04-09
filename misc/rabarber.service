@@ -1,1 +1,12 @@
 [Unit]
+Description=Rabarber Service
+After=network.target
+
+[Service]
+WorkingDirectory=/home/pi/rabarber
+ExecStart=/usr/local/bin/node server.js
+Restart=on-failure
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
